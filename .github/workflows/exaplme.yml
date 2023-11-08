@@ -6,6 +6,16 @@ on:
         description: "Person's name"
         required: true
         default: "Anon"
+      
+      language:
+        description: "language"
+        required: true
+        type: choice 
+        options:
+           - "en" 
+           - "fr"
+        default: "en"
+        
 
 jobs: 
   say_hello:
@@ -33,3 +43,12 @@ jobs:
         with:
           name: greeting-result-fr
           path: output.txt
+
+  display:
+    runs-on: ubuntu-latest
+    needs: [say_hello, say_bonjour]
+    steps:
+      - name: "download greeting"
+        uses: actions/download-artifact@v3
+        with:
+          name: greeting-result -${{github.event.inputs.language}} 
