@@ -51,4 +51,4 @@ jobs:
       - name: "download greeting"
         uses: actions/download-artifact@v3
         with:
-          name: greeting-result -${{github.event.inputs.language}} 
+          name: greeting-result-${{github.event.inputs.language}} 
